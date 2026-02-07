@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Community Partners Directory</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 1rem; }
+    input { width: 100%; padding: 0.6rem; margin-bottom: 1rem; font-size: 1rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #ddd; padding: 0.5rem; vertical-align: top; }
+    th { text-align: left; background: #f5f5f5; }
+    @media (max-width: 700px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tr { margin-bottom: 1rem; }
+      td::before {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      td[data-label]::before { content: attr(data-label); }
+    }
+  </style>
+</head>
+<body>
+
+<h2>Community Partners Directory</h2>
+
+<input type="text" id="search" placeholder="Search partners…" />
+
+<table id="partners">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>City</th>
+      <th>Service Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- REPLACE THESE ROWS WITH YOUR REAL DATA -->
+    <tr>
+      <td data-label="Name">Example Organization</td>
+      <td data-label="Contact">Jane Doe</td>
+      <td data-label="Phone"><a href="tel:15555551234">555-555-1234</a></td>
+      <td data-label="Email"><a href="mailto:jane@example.org">jane@example.org</a></td>
+      <td data-label="Website"><a href="https://example.org" target="_blank">example.org</a></td>
+      <td data-label="City">Davis</td>
+      <td data-label="Service Area">Yolo County</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  const search = document.getElementById('search');
+  search.addEventListener('input', () => {
+    const q = search.value.toLowerCase();
+    document.querySelectorAll('#partners tbody tr').forEach(row => {
+      row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+</script>
+
+<p style="margin-top:2rem;font-size:0.9rem;color:#666">
+  Directory information subject to change. For official referrals, contact Common Good Community.
+</p>
+
+</body>
+</html>
