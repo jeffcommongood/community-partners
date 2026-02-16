@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Community Partners Directory</title>
+<style>
+    :root {
+      --accent: #159996;
+      --text: #159996;
+      --bg: #ffffff;
+      --muted: #5b6670;
+      --line: #e8eef0;
+      --chip-bg: rgba(21,153,150,0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1.15rem 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header .wrap {
+      max-width: none;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: 0.2px;
+      font-weight: 780;
+    }
+    .sub {
+      margin-top: 0.25rem;
+      font-size: 0.95rem;
+      opacity: 0.92;
+      font-weight: 600;
+    }
+    main {
+      max-width: none;
+      margin: 1rem 0 3rem;
+      padding: 0 1rem;
+    }
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 1rem 0 0.75rem;
+    }
+    .search {
+      flex: 1 1 420px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.65rem 0.85rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    .search input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 650;
+    }
+    .hint {
+      color: rgba(255,255,255,0.95);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+    .count {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 0.75rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.07);
+    }
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: rgba(21,153,150,0.08);
+      color: var(--accent);
+      text-align: left;
+      font-weight: 850;
+      font-size: 0.92rem;
+      padding: 0.85rem 0.75rem;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(6px);
+    }
+    tbody td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    tbody tr:hover {
+      background: rgba(21,153,150,0.04);
+    }
+    .primary {
+      font-weight: 850;
+      letter-spacing: 0.1px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 750;
+    }
+    a:hover {
+      opacity: 0.85;
+    }
+    .chip {
+      display: inline-block;
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      border: 1px solid rgba(21,153,150,0.25);
+      font-weight: 850;
+      font-size: 0.82rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .more {
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .more p { margin: 0 0 0.5rem; }
+    .more ul, .more ol { margin: 0.25rem 0 0.6rem 1.1rem; }
+    .more li { margin: 0.15rem 0; }
+
+    footer {
+      margin-top: 1.25rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Mobile: card layout */
+    @media (max-width: 900px) {
+      thead { display: none; }
+      table, tbody, tr, td { display: block; width: 100%; }
+      table { border-radius: 16px; }
+      tbody tr {
+        border-bottom: 1px solid var(--line);
+        padding: 0.4rem 0.2rem;
+      }
+      tbody td {
+        border-bottom: none;
+        padding: 0.5rem 0.75rem;
+      }
+      tbody td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--muted);
+        font-weight: 850;
+        font-size: 0.78rem;
+        margin-bottom: 0.18rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  
+    tr.highlight { outline: 3px solid #159996; outline-offset: -3px; }
+    tr.highlight td { background: rgba(21,153,150,0.08); }
+
+
+/* Added: URL-driven highlight */
+.partner-highlight{outline:3px solid #159996; outline-offset:-3px;}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<div>
+<h1>Community Partners Directory</h1>
+</div>
+<div class="hint">Search by partner, category, city, or keywords.</div>
+</div>
+</header>
+<main>
+<div class="controls">
+<div class="search" role="search">
+<span aria-hidden="true">🔎</span>
+<input autocomplete="off" id="search" placeholder="Search…" type="text"/>
+</div>
+<div class="count" id="count"></div>
+</div>
+<table aria-label="Community Partners Directory" id="partners">
+<thead>
+<tr>
+<th>Partner</th>
+<th>Contact</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Address</th>
+<th>City</th>
+<th>Category</th>
+<th>More Information</th>
+</tr>
+</thead>
+<tbody>
+<tr data-partnerkey="211-sacramento-sacramento-8001-folsom-blvd-california-95826-2621" id="partner-211-sacramento-sacramento-8001-folsom-blvd-california-95826-2621">
+<td data-label="Partner"><div class="primary">211 Sacramento</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19164981000">(916) 498-1000</a></td>
+<td data-label="Email"><a class="email" href="mailto:info@211sacramento.org">info@211sacramento.org</a></td>
+<td data-label="Address">8001 Folsom Blvd California 95826-2621</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>211 Sacramento is a social, health and disaster services information hub maintaining a network of over 1600 community resources for the Sacramento County area. 2-1-1 is accessible 24 hours a day, 7 days a week to help community members navigate the social and health delivery systems in times of need with services in English, Spanish, Lao, Mien, and Thai in addition to over 200 languages and dialects via tele-interpreter service.</p></div></td>
+</tr>
+<tr data-partnerkey="acc-senior-resources-sacramento-7334-park-city-dr-california-95831-3865" id="partner-acc-senior-resources-sacramento-7334-park-city-dr-california-95831-3865">
+<td data-label="Partner"><div class="primary">ACC Senior Resources</div></td>
+<td data-label="Contact">Virginia Wieneke</td>
+<td data-label="Phone"><a class="tel" href="tel:+19163939026">(916) 393-9026</a></td>
+<td data-label="Email"><a class="email" href="mailto:vwieneke@accsv.org">vwieneke@accsv.org</a></td>
+<td data-label="Address">7334 Park City Dr California 95831-3865</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Senior</td>
+<td data-label="More Information"></td>
+</tr>
+<tr data-partnerkey="agency-on-aging-area-4-sacramento-1401-el-camino-ave-4th-floor-ca-95815-2700" id="partner-agency-on-aging-area-4-sacramento-1401-el-camino-ave-4th-floor-ca-95815-2700">
+<td data-label="Partner"><div class="primary">Agency on Aging Area 4</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">1401 El Camino Ave 4th floor CA 95815-2700</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Senior</td>
+<td data-label="More Information"><div class="more"><p>provide services for older adults and caregivers in the seven-county region.</p></div></td>
+</tr>
+<tr data-partnerkey="alta-california-regional-center-sacramento-4151-e-commerce-way-suite-100-ca-95834-9728" id="partner-alta-california-regional-center-sacramento-4151-e-commerce-way-suite-100-ca-95834-9728">
+<td data-label="Partner"><div class="primary">Alta California Regional Center</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">4151 E Commerce Way Suite 100 CA 95834-9728</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Basic Needs</td>
+<td data-label="More Information"><div class="more"><p>non-profit corporation working under contract with the State of California, Department of Developmental Services, to provide services to persons, age three and above, with a developmental disability pursuant to the Lanterman Act.</p><p>~ provide services in Alpine, Colusa, El Dorado, Nevada, Placer, Sacramento, Sierra, Sutter, Yolo, and Yuba</p></div></td>
+</tr>
+<tr data-partnerkey="anthem-resources-members-only" id="partner-anthem-resources-members-only">
+<td data-label="Partner"><div class="primary">Anthem Resources-Members ONLY</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"><div class="more"><p>If you are working with an Anthem Member, start here: <a href="https://mss.anthem.com/california-medicaid/benefits/medi-cal-plan-benefits.html" rel="noopener noreferrer nofollow" target="_blank">https://mss.anthem.com/california-medicaid/benefits/medi-cal-plan-benefits.html</a></p></div></td>
+</tr>
+<tr data-partnerkey="asian-resources-inc-sacramento-2411-alhambra-blvd-ste-110-california-95817-1100" id="partner-asian-resources-inc-sacramento-2411-alhambra-blvd-ste-110-california-95817-1100">
+<td data-label="Partner"><div class="primary">Asian Resources Inc.</div></td>
+<td data-label="Contact">Rejie Baloyos</td>
+<td data-label="Phone"><a class="tel" href="tel:+19168384804">(916) 838-4804</a></td>
+<td data-label="Email"><a class="email" href="mailto:rejie@asianresources.org">rejie@asianresources.org</a></td>
+<td data-label="Address">2411 Alhambra Blvd ste 110 California 95817-1100</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Employment Services</td>
+<td data-label="More Information"><div class="more"><p>Asian Resources, Inc. (ARI) is a nonprofit community-based organization established in 1980 dedicated to providing multiple social services needed in our community and empowering everyone we serve to become a vital part of our changing, diverse society.</p><p></p><p><strong>Employment Services</strong></p><p><strong>Healthcare Navigation, Free Tax Preparation, Digital Literacy, Youth Program, Assistance applying for public benefits or basic immigration support</strong></p></div></td>
+</tr>
+<tr data-partnerkey="benefit-eligibility-form" id="partner-benefit-eligibility-form">
+<td data-label="Partner"><div class="primary">Benefit Eligibility Form</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Insurance Eligibility</td>
+<td data-label="More Information"><div class="more"><p>Send to members to verify eligibility by uploading a picture of their insurance card. If they are Kaiser members, they must upload their Medi-Cal card number. The first 9 digits of their Medi-Cal number is their CIN</p><p><a href="https://commongood4u.jotform.com/team/coordinatedcare/member-insurance-verification-form-" rel="noopener noreferrer nofollow">Benefit Eligibility Form</a></p></div></td>
+</tr>
+<tr data-partnerkey="benefits-cal" id="partner-benefits-cal">
+<td data-label="Partner"><div class="primary">Benefits Cal</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Food Assistance</td>
+<td data-label="More Information"><div class="more"><ul><li><p>CalFresh</p></li><li><p>Medi-Cal</p></li><li><p>CalWORKs</p></li><li><p>Refugee Cash Assistance</p><p></p></li></ul><p>Use our Benefits Cal Link <a href="https://benefitscal.com/r/commongood" rel="noopener noreferrer nofollow" target="_blank">https://benefitscal.com/r/commongood</a></p></div></td>
+</tr>
+<tr data-partnerkey="black-child-legacy-fruitridge-stockton-sacramento-4625-44th-st-california-95820-3909" id="partner-black-child-legacy-fruitridge-stockton-sacramento-4625-44th-st-california-95820-3909">
+<td data-label="Partner"><div class="primary">Black Child Legacy (Fruitridge Stockton)</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19164317485">(916) 431-7485</a></td>
+<td data-label="Email"><a class="email" href="mailto:fscil21.bclc@gmail.com">fscil21.bclc@gmail.com</a></td>
+<td data-label="Address">4625 44th St California 95820-3909</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Basic Needs</td>
+<td data-label="More Information"><div class="more"><p>Provides support services and wrap-around case management to families in the Fruitridge/Stockton community. Support is provided in Perinatal/Safe Sleep, child abuse and neglect, and Third-party homicide. The mission is to reduce African American child deaths in the Fruitridge Stockton Community by supporting children and families.</p></div></td>
+</tr>
+<tr data-partnerkey="capital-pro-bono-sacramento-1860-howe-ave-suite-130-california-95825-1098" id="partner-capital-pro-bono-sacramento-1860-howe-ave-suite-130-california-95825-1098">
+<td data-label="Partner"><div class="primary">Capital Pro Bono</div></td>
+<td data-label="Contact">Contact</td>
+<td data-label="Phone"><a class="tel" href="tel:+19165512102">(916) 551-2102</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">1860 Howe Ave Suite 130 California 95825-1098</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Legal</td>
+<td data-label="More Information"><div class="more"><p><strong>Capital Pro Bono is ready to help in any way we can. Please be aware that all clients receiving services through CPB must qualify based on income, asset and residency restrictions.  Services are also determined by volunteer availability.</strong></p><p style="text-align: start"><strong>Please fill out this form and we will be in touch with you as soon as possible. Make sure to include a working phone number and email address where you can be reached.  Due to limited staff and volunteers, please allow 5 business days for a response.</strong></p><p style="text-align: start"><a href="https://capitalprobono.org/contact-us/" rel="noopener noreferrer nofollow"><strong>Contact Form</strong></a></p></div></td>
+</tr>
+<tr data-partnerkey="center-for-oral-health-sacramento-9521-folsom-blvd-ste-r-12-california-95827-1203" id="partner-center-for-oral-health-sacramento-9521-folsom-blvd-ste-r-12-california-95827-1203">
+<td data-label="Partner"><div class="primary">Center for Oral Health</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+14243411789">(424) 341-1789</a></td>
+<td data-label="Email"><a class="email" href="mailto:tturner@tc4oh.org">tturner@tc4oh.org</a></td>
+<td data-label="Address">9521 Folsom Blvd Ste R 12 California 95827-1203</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>For nearly 40 years, we have committed ourselves to improving oral health in vulnerable populations through dental services, education, research, and advocacy.</p></div></td>
+</tr>
+<tr data-partnerkey="child-action-inc-rancho-cordova-10540-white-rock-rd-suite-180-ca-95670-6012" id="partner-child-action-inc-rancho-cordova-10540-white-rock-rd-suite-180-ca-95670-6012">
+<td data-label="Partner"><div class="primary">Child Action Inc</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">10540 White Rock Rd Suite 180 CA 95670-6012</td>
+<td data-label="City">Rancho Cordova</td>
+<td data-label="Category">Child Care Services</td>
+<td data-label="More Information"><div class="more"><p>• Quality care for children<br/>• Families’ right to choose services that fit their family needs<br/>• Support for child care professionals in providing quality care<br/>• Excellence and teamwork in all that we do<br/>• Collaborative work within the community to develop services that support children and families</p></div></td>
+</tr>
+<tr data-partnerkey="communicare-health-centers-woodland-215-w-beamer-st-california-95695-2510" id="partner-communicare-health-centers-woodland-215-w-beamer-st-california-95695-2510">
+<td data-label="Partner"><div class="primary">CommuniCare Health Centers</div></td>
+<td data-label="Contact">Keeley Albright</td>
+<td data-label="Phone"><a class="tel" href="tel:+15302853201">(530) 285-3201</a></td>
+<td data-label="Email"><a class="email" href="mailto:keeleya@communicarehc.org">keeleya@communicarehc.org</a></td>
+<td data-label="Address">215 W Beamer St California 95695-2510</td>
+<td data-label="City">Woodland</td>
+<td data-label="Category">Behavioral Health</td>
+<td data-label="More Information"><div class="more"><p>CommuniCare Health Centers is a Federally Qualified Health Center providing health care to those in need since 1972. CommuniCare provides comprehensive health care services delivered by a dedicated team of providers and support staff through our clinic sites and outreach programs. Our goal is to develop and maintain a long-term, healing partnership with each of our patients, while ensuring the best possible health outcomes. Serving communities throughout the Yolo County region, CommuniCare provides health services for one in every eight residents of the area. Our services include primary medical and dental health care, behavioral health services, substance use treatment, health education and support services.</p></div></td>
+</tr>
+<tr data-partnerkey="council-on-american-islamic-relations-sacramento-717-k-st-suite-217-california-95814-3477" id="partner-council-on-american-islamic-relations-sacramento-717-k-st-suite-217-california-95814-3477">
+<td data-label="Partner"><div class="primary">Council on American-Islamic Relations</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">717 K St Suite 217 California 95814-3477</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Domestic Violence/Women</td>
+<td data-label="More Information"><div class="more"><p>We seek to assist individuals who seek asylum, legal permanent residency, citizenship or reunification with their families, as well as victims of human trafficking, serious crimes and domestic violence.</p><p style="text-align: start">If you believe that you or someone you know has been the victim of any of the aforementioned forms of discrimination or is in need of immigration legal services, please report it by filling out the <a class="fui-Link ___10kug0w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1hu3pq6 f11qmguv f19f4twv f1tyq0we f1g0x7ka fhxju0i f1qch9an f1cnd47f fqv5qza f1vmzxwi f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn" href="https://app.practicepanther.com/IntakeForm/Create?templateGuid=00c58761-fa74-4611-b6c1-f9bb11240310" rel="noopener noreferrer nofollow" target="_blank"><u>civil rights intake form</u></a>.</p></div></td>
+</tr>
+<tr data-partnerkey="creative-behavior-systems-davis-california" id="partner-creative-behavior-systems-davis-california">
+<td data-label="Partner"><div class="primary">Creative Behavior Systems</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+15302191714">(530) 219-1714</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">California</td>
+<td data-label="City">Davis</td>
+<td data-label="Category">Basic Needs</td>
+<td data-label="More Information"><div class="more"><p>Empowering organizations, educators, leaders, people in skill building to foster trust and truth in their professional and personal relationships with students, colleagues, parents and to self. To heal, connect and diminish inequities. To create communities where trauma and adverse childhood experiences diminish, based on collaborative teachings, workshops, seminars and sustainable systems of continuous practice.</p></div></td>
+</tr>
+<tr data-partnerkey="davis-adult-community-education-davis-davis-adult-community-education-main-office-california-95616-1914" id="partner-davis-adult-community-education-davis-davis-adult-community-education-main-office-california-95616-1914">
+<td data-label="Partner"><div class="primary">Davis Adult &amp; Community Education</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+15307575380">(530) 757-5380</a></td>
+<td data-label="Email"><a class="email" href="mailto:das@djusd.net">das@djusd.net</a></td>
+<td data-label="Address">Davis Adult &amp; Community Education - Main Office California 95616-1914</td>
+<td data-label="City">Davis</td>
+<td data-label="Category">Employment Services</td>
+<td data-label="More Information"><div class="more"><p>The Mission of Davis Adult and Community Education is to ignite a love of learning and empower students to fulfill their personal goals by: Providing an environment in which each student can increase their knowledge, skills, and well-being Implementing systems and programs that enable students to thrive and make positive contributions to their community and Emphasizing Schoolwide Learning Outcomes that enhance student’s college and career readiness</p><p><a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://dace.djusd.net/common/pages/GetFile.ashx?key=%2bHkdDBqK" rel="noopener noreferrer nofollow">Davis Adult Ed-Winter</a></p></div></td>
+</tr>
+<tr data-partnerkey="davis-conference-st-vincent-de-paul-davis-1300-union-dr-california-95616-1342" id="partner-davis-conference-st-vincent-de-paul-davis-1300-union-dr-california-95616-1342">
+<td data-label="Partner"><div class="primary">Davis Conference St. Vincent de Paul</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+15303046493">(530) 304-6493</a></td>
+<td data-label="Email"><a class="email" href="mailto:jebfoley@gmail.com">jebfoley@gmail.com</a></td>
+<td data-label="Address">1300 Union Dr California 95616-1342</td>
+<td data-label="City">Davis</td>
+<td data-label="Category">Basic Needs</td>
+<td data-label="More Information"><div class="more"><p>We are a church-affiliated international organization with a mission to support brothers and sisters in need in our neighborhood.</p></div></td>
+</tr>
+<tr data-partnerkey="elica-health-and-resource-centers-west-sacramento-1276-halyard-dr-california-95691-3412" id="partner-elica-health-and-resource-centers-west-sacramento-1276-halyard-dr-california-95691-3412">
+<td data-label="Partner"><div class="primary">Elica Health and Resource Centers</div></td>
+<td data-label="Contact">Margarita Dodatko</td>
+<td data-label="Phone"></td>
+<td data-label="Email"><a class="email" href="mailto:rito4ka2010@gmail.com">rito4ka2010@gmail.com</a></td>
+<td data-label="Address">1276 Halyard Dr California 95691-3412</td>
+<td data-label="City">West Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>Elica Health Centers Offers Quality Comprehensive Healthcare, Health Outreach, And Links To Social Services To Thousands Of Low-Income Patients In The Sacramento Region—Regardless Of Their Ability To Pay. Elica Has Over 480 Experienced, Highly Trained Providers And Staff Who Embody Our Mission Of “Healing With Heart.” The Elica Resource Center Empowers Patients (And Not Only, Since We Are Ready To Help Anyone) By Connecting Them To The People, Places, And Resources That Enable Them To Build Healthy And Full Lives. Because The Natural Bonds Of Human Dignity Surpass Geographic, Ethnic, Or Cultural Boundaries, The Immigrant Resource Center Believes All Residents Of Sacramento, Yolo And Placer County Have The Right For Information That Will Enable Them To Become Full Members Of Society. Elica Resource Center Is The Home Of Our Community Closet And Computer Lab.</p></div></td>
+</tr>
+<tr data-partnerkey="empower-yolo-west-sacramento-1025-triangle-ct-600-california-95605-2376" id="partner-empower-yolo-west-sacramento-1025-triangle-ct-600-california-95605-2376">
+<td data-label="Partner"><div class="primary">Empower Yolo</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19168738824">(916) 873-8824</a></td>
+<td data-label="Email"><a class="email" href="mailto:info@empoweryolo.org">info@empoweryolo.org</a></td>
+<td data-label="Address">1025 Triangle Ct #600 California 95605-2376</td>
+<td data-label="City">West Sacramento</td>
+<td data-label="Category">Domestic Violence/Women</td>
+<td data-label="More Information"><div class="more"><p>Empower Yolo’s purpose is to provide… Twenty-four hour crisis intervention, emergency shelter, confidential counseling, training, legal assistance, and other services for individuals and families affected by domestic violence, sexual assault, stalking, human trafficking, and child abuse; Resource centers for community services to improve the health, social, educational and economic outcomes of Yolo County residents; and Community outreach and educational programs about available resources to promote health, stability, and self-sufficiency for individuals and families. All services are to be provided in a manner that appreciates, enhances, and utilizes the strengths of Empower Yolo’s clients and honors their cultural practices and traditions.</p></div></td>
+</tr>
+<tr data-partnerkey="family-promise-sacramento-p-o-box-1378-ca-95812-1378" id="partner-family-promise-sacramento-p-o-box-1378-ca-95812-1378">
+<td data-label="Partner"><div class="primary">Family Promise</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">P.O. Box 1378 CA 95812-1378</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Housing</td>
+<td data-label="More Information"><div class="more"><p><strong>supporting families with children who are experiencing homelessness. Our mission is to help these families achieve stability and independent living. We provide a safe haven with rotational and transitional housing, along with comprehensive case management and a variety of additional resources. By coming together as a community, we can create meaningful and lasting change in the lives of these families.</strong></p><p style="text-align: start"><strong>​​</strong></p></div></td>
+</tr>
+<tr data-partnerkey="fourth-hope-woodland-285-4th-st-california-95695-3501" id="partner-fourth-hope-woodland-285-4th-st-california-95695-3501">
+<td data-label="Partner"><div class="primary">Fourth &amp; Hope</div></td>
+<td data-label="Contact">EMERGENCY SHELTER &amp; SERVICES</td>
+<td data-label="Phone"><a class="tel" href="tel:+15306611218">(530) 661-1218</a></td>
+<td data-label="Email"><a class="email" href="mailto:volunteer@fourthandhope.org">volunteer@fourthandhope.org</a></td>
+<td data-label="Address">285 4th St California 95695-3501</td>
+<td data-label="City">Woodland</td>
+<td data-label="Category">Basic Needs</td>
+<td data-label="More Information"><div class="more"><p>Community-based organization providing daily basic needs to those in need.</p></div></td>
+</tr>
+<tr data-partnerkey="health-education-council-sacramento-7617-alma-vista-way-suite-c-california-95831-4000" id="partner-health-education-council-sacramento-7617-alma-vista-way-suite-c-california-95831-4000">
+<td data-label="Partner"><div class="primary">Health Education Council</div></td>
+<td data-label="Contact">Amanda Bloom</td>
+<td data-label="Phone"><a class="tel" href="tel:+19165563344">(916) 556-3344</a></td>
+<td data-label="Email"><a class="email" href="mailto:admin@healthedcouncil.org">admin@healthedcouncil.org</a></td>
+<td data-label="Address">7617 Alma Vista Way Suite C California 95831-4000</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>The Health Education Council (HEC) Is A 501(C)(3) Nonprofit Organization Committed To Promoting Health And Preventing Chronic Disease In Underserved Communities. Our Teams Of Public Health Professionals Forge Cross-Sectors Partnerships Which Have The Ability To Foster And Develop More Healthful Environments So That Health Is Within Reach For All.</p></div></td>
+</tr>
+<tr data-partnerkey="health-fair-flyer" id="partner-health-fair-flyer">
+<td data-label="Partner"><div class="primary">Health Fair Flyer</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>Hi {{ First Name }}</p><p>We're hosting another Anthem sponsored Health Fair at Valley High Health TECH</p><p><strong>Sunday, December 15th , 2024</strong></p><p><strong>10:00 AM - 2:00 PM</strong></p><p>Valley High School - Health TECH Academy</p><p>6300 Ehrhardt Ave</p><p>Sacramento, CA 95823</p><p></p><p>Please click on the <a href="https://acrobat.adobe.com/id/urn:aaid:sc:VA6C2:0fa5c31c-fa16-4508-b905-6c666946047d" rel="noopener noreferrer nofollow">Flyer Link</a> for more details</p><p></p><p>If you have any questions or would like to schedule an appointment during the 10am-2pm timeframe, please<a href="https://form.jotform.com/jason896/chw-coordinated-care-appointment" rel="noopener noreferrer nofollow" target="_blank"> FILL OUT THE APPOINTMENT REQUEST FORM</a></p><p></p></div></td>
+</tr>
+<tr data-partnerkey="health-net-member-services" id="partner-health-net-member-services">
+<td data-label="Partner"><div class="primary">Health Net Member Services</div></td>
+<td data-label="Contact">Member Services</td>
+<td data-label="Phone"><a class="tel" href="tel:+18006756110">(800) 675-6110</a></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"></td>
+</tr>
+<tr data-partnerkey="help-me-grow-yolo-county-woodland-1321-college-st-suite-e-suite-e-california-95695-4706" id="partner-help-me-grow-yolo-county-woodland-1321-college-st-suite-e-suite-e-california-95695-4706">
+<td data-label="Partner"><div class="primary">Help Me Grow Yolo County</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+18444104769">(844) 410-4769</a></td>
+<td data-label="Email"><a class="email" href="mailto:information@helpmegrowyolo.org">information@helpmegrowyolo.org</a></td>
+<td data-label="Address">1321 College St Suite E, Suite E California 95695-4706</td>
+<td data-label="City">Woodland</td>
+<td data-label="Category">Child Care Services</td>
+<td data-label="More Information"><div class="more"><p>The mission of Help Me Grow Yolo is to promote healthy development for every child in the community by providing free developmental screenings and connecting families with children birth through age 5 to community resources. Help Me Grow Yolo is a proud program of the Northern California Children’s Therapy Center with funding provided by First 5 Yolo and Yolo County Health and Human Services Agency. Help Me Grow Yolo is a part of a larger California Affiliate of a national Help Me Grow program. Help Me Grow supports families, child health care, early care and education, and human service providers. The community can use Help Me Grow to identify early signs of developmental or behavioral concerns and the available community resources to address their needs. By calling the Help Me Grow Yolo County at 1-844-410-GROW (4769) or emailing us at <a href="mailto:information@helpmegrowyolo.org" rel="noopener noreferrer nofollow" target="_blank">information@helpmegrowyolo.org</a>, parents, childcare providers, early educators, and health care providers can access all services for all young children who live in Yolo County in real-time. If they would like further information, free developmental screening is offered to determine any areas of concern. After identifying areas of concern, HMG provides information and connections to community-based resources.</p></div></td>
+</tr>
+<tr data-partnerkey="her-health-first-sacramento-4625-44th-st-13-california-95820-3909" id="partner-her-health-first-sacramento-4625-44th-st-13-california-95820-3909">
+<td data-label="Partner"><div class="primary">Her Health First</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19165584812">(916) 558-4812</a></td>
+<td data-label="Email"><a class="email" href="mailto:admin@herhealthfirst.org">admin@herhealthfirst.org</a></td>
+<td data-label="Address">4625 44th St #13 California 95820-3909</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Domestic Violence/Women</td>
+<td data-label="More Information"><div class="more"><p>Her Health First’s mission is to improve health equity by providing support to women in Sacramento County. We envision a community in which all women have full and equal access to opportunities leading to the highest level of health possible. Her Health First offers the Black Mothers United program through a trauma-informed lens which includes education, Pregnancy Coach support, Doula Services, Lactation support, and referrals to mental health and other resources. Her Health First prioritizes celebrating moms at all points in her pregnancy, and after.</p></div></td>
+</tr>
+<tr data-partnerkey="hill-physicians-medical-group-sacramento-1435-river-park-dr-suite-200-california-95815-4510" id="partner-hill-physicians-medical-group-sacramento-1435-river-park-dr-suite-200-california-95815-4510">
+<td data-label="Partner"><div class="primary">Hill Physicians Medical Group</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">1435 River Park Dr Suite 200 California 95815-4510</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>Hill Physicians Medical Group is the largest network of independent doctors in Northern California. Our more than 4,000 primary care physicians and specialists provide high-quality care across the San Francisco Bay, Sacramento and Central Valley areas.</p></div></td>
+</tr>
+<tr data-partnerkey="la-familia-counseling-center-inc-sacramento-5523-34th-st-california-95820-4725" id="partner-la-familia-counseling-center-inc-sacramento-5523-34th-st-california-95820-4725">
+<td data-label="Partner"><div class="primary">La Familia Counseling Center, Inc.</div></td>
+<td data-label="Contact">admin</td>
+<td data-label="Phone"><a class="tel" href="tel:+19164523601">(916) 452-3601</a></td>
+<td data-label="Email"><a class="email" href="mailto:info@lafcc.org">info@lafcc.org</a></td>
+<td data-label="Address">5523 34th St California 95820-4725</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Behavioral Health</td>
+<td data-label="More Information"><div class="more"><p>Works To Improve The Quality Of Life For At-Risk Youth And Families Of Diverse Backgrounds By Offering Multicultural Counseling, Support And Outreach Services And Programs To Help Families To Overcome Adversity, To Become Empowered, And To Succeed In Their Lives.</p></div></td>
+</tr>
+<tr data-partnerkey="lead-poisoning-prevention-sacramento-9616-micron-ave-670-ca-95827-2699" id="partner-lead-poisoning-prevention-sacramento-9616-micron-ave-670-ca-95827-2699">
+<td data-label="Partner"><div class="primary">Lead Poisoning Prevention</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">9616 Micron Ave # 670 CA 95827-2699</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><h2 style="text-align: start"><strong>Sacramento</strong></h2><p style="text-align: start">Sacramento County Department of Health and Human Services<br/>9616 Micron Avenue, Suite 670<br/>Sacramento, CA  95827</p><p style="text-align: start"></p><p style="text-align: start">Phone: (916) 875-7151 | <a href="https://dhs.saccounty.net/PUB/Pages/Childhood-Lead-Poisoning-Prevention-Program/SP-Childhood-Lead-Poisoning-Prevention-Program.aspx" rel="noopener noreferrer nofollow" target="_blank">Visit Sacramento CLPPP's website</a><br/>Cynthia Johnston, RD, MPH - <a href="mailto:Coordinator￼JohnstonC@saccounty.net" rel="noopener noreferrer nofollow" target="_blank">Coordinator<br/>JohnstonC@saccounty.net</a></p></div></td>
+</tr>
+<tr data-partnerkey="lead4tomorrow-family-hui-davis-651-i-st-california-95616" id="partner-lead4tomorrow-family-hui-davis-651-i-st-california-95616">
+<td data-label="Partner"><div class="primary">Lead4Tomorrow/Family HUI</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19162145481">(916) 214-5481</a></td>
+<td data-label="Email"><a class="email" href="mailto:info@lead4tomorrow.org">info@lead4tomorrow.org</a></td>
+<td data-label="Address">651 I St California 95616</td>
+<td data-label="City">Davis</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>Lead4Tomorrow (L4T) was established in 2011 as a 501(c)3 public benefit nonprofit organization based in California, also operating in other states and East Africa. Our mission is it to develop nurturing families, thriving children, resilient communities and healthy societies. Our three primaty programs are Family Hui, Community Leadership, and the East Africa Community and Family Health Initiative.</p></div></td>
+</tr>
+<tr data-partnerkey="legal-services-of-northern-california-hicap-sacramento-505-12th-st-california-95814-1418" id="partner-legal-services-of-northern-california-hicap-sacramento-505-12th-st-california-95814-1418">
+<td data-label="Partner"><div class="primary">Legal Services of Northern California - HICAP</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19163768915">(916) 376-8915</a></td>
+<td data-label="Email"><a class="email" href="mailto:hicap@lsnc.net">hicap@lsnc.net</a></td>
+<td data-label="Address">505 12th St California 95814-1418</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Senior</td>
+<td data-label="More Information"><div class="more"><p>HICAP Services of Northern California, a special program of Legal Services of Northern California, works with people who have questions about Medicare coverage and options, including eligibility, enrollment, affordability, and access to care. Our HICAP serves nine counties in the greater Sacramento region: El Dorado, Nevada, Placer, Sacramento, San Joaquin, Sierra, Sutter, Yolo, and Yuba.</p></div></td>
+</tr>
+<tr data-partnerkey="legal-services-of-northern-california-sacramento-sacramento-515-12th-st-california-95814-1418" id="partner-legal-services-of-northern-california-sacramento-sacramento-515-12th-st-california-95814-1418">
+<td data-label="Partner"><div class="primary">Legal Services of Northern California - Sacramento</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19165512150">(916) 551-2150</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">515 12th St California 95814-1418</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Food Assistance</td>
+<td data-label="More Information"><div class="more"><p><strong>Cases we handle</strong></p><p>Housing, public benefits, including CalWorks, CalFresh (food stamps), Medi-Cal, General Assistance (GA), Social Security, SSI, unemployment insurance benefits (UIB), and state disability insurance (SDI).</p></div></td>
+</tr>
+<tr data-partnerkey="lutheran-social-services-sacramento-2450-alhambra-blvd-suite-101-ca-95817-1120" id="partner-lutheran-social-services-sacramento-2450-alhambra-blvd-suite-101-ca-95817-1120">
+<td data-label="Partner"><div class="primary">Lutheran Social Services</div></td>
+<td data-label="Contact">Sacramento</td>
+<td data-label="Phone"><a class="tel" href="tel:+19164532900">(916) 453-2900</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">2450 Alhambra Blvd Suite 101 CA 95817-1120</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Housing</td>
+<td data-label="More Information"><div class="more"><p><em>LSS of Northern California's mission is to promote stability and honor the dignity of those we serve by providing supportive housing services that lead to self-sufficiency.</em></p></div></td>
+</tr>
+<tr data-partnerkey="meals-on-wheels-yolo-woodland-711-main-st-suite-b-california-95695-3406" id="partner-meals-on-wheels-yolo-woodland-711-main-st-suite-b-california-95695-3406">
+<td data-label="Partner"><div class="primary">Meals on Wheels Yolo</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+15306627035">(530) 662-7035</a></td>
+<td data-label="Email"><a class="email" href="mailto:welcome@mowyolo.org">welcome@mowyolo.org</a></td>
+<td data-label="Address">711 Main St Suite B California 95695-3406</td>
+<td data-label="City">Woodland</td>
+<td data-label="Category">Home Delivered Meals</td>
+<td data-label="More Information"><div class="more"><p>Meals on Wheels Yolo County provides nutrition and social contact to senior citizens age 60+ and other homebound individuals, currently focused upon thrice-weekly COVID-19-safe home deliveries of five hot and frozen meals. Currently, nearly 400 food insecure adults are being served close to 100,000 meals annually. With a rich, 47-year history of nourishing older adults both at their doorsteps and in congregant settings, Meals on Wheels thrives thanks to donations of funds and time from the community.</p></div></td>
+</tr>
+<tr data-partnerkey="member-blood-pressure-monitoring" id="partner-member-blood-pressure-monitoring">
+<td data-label="Partner"><div class="primary">Member Blood Pressure Monitoring</div></td>
+<td data-label="Contact">Jason Honig</td>
+<td data-label="Phone"><a class="tel" href="tel:+15302314413">(530) 231-4413</a></td>
+<td data-label="Email"><a class="email" href="mailto:jason@commongood4u.org">jason@commongood4u.org</a></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"><div class="more"><p><a href="https://commongood4u.jotform.com/jason/blood-pressure-monitoring-form" rel="noopener noreferrer nofollow">Member Home Monitoring Form</a></p></div></td>
+</tr>
+<tr data-partnerkey="member-urgent-need-care-coordination-case-conference" id="partner-member-urgent-need-care-coordination-case-conference">
+<td data-label="Partner"><div class="primary">Member Urgent Need/Care Coordination Case Conference</div></td>
+<td data-label="Contact">Jason</td>
+<td data-label="Phone"><a class="tel" href="tel:+15302314413">(530) 231-4413</a></td>
+<td data-label="Email"><a class="email" href="mailto:jason@commongood4u.org">jason@commongood4u.org</a></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"><div class="more"><p>Urgent/High Risk</p><p>Please fill out form to notify Care Coordination Team/Jason to review and schedule meeting time</p><p><a href="https://commongood4u.jotform.com/243536188428970" rel="noopener noreferrer nofollow">Care Coordination/Case Conference Form</a></p></div></td>
+</tr>
+<tr data-partnerkey="moms-meals-ankeny-3210-se-corporate-woods-dr-io-50021-7405" id="partner-moms-meals-ankeny-3210-se-corporate-woods-dr-io-50021-7405">
+<td data-label="Partner"><div class="primary">Moms Meals</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">3210 SE Corporate Woods Dr IO 50021-7405</td>
+<td data-label="City">Ankeny</td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"><div class="more"><p>call insurance for referral</p><p>We need a referral along with information about the member or patient, including identification and address for delivery, meal start date and duration, the quantity of meals per day, case manager or other referring provider information, and any other notes regarding the unique food preferences or delivery information to best serve each individual.</p></div></td>
+</tr>
+<tr data-partnerkey="mutual-assistance-network-black-infant-health-sacramento-811-grand-ave-a3-ca-95838-3466" id="partner-mutual-assistance-network-black-infant-health-sacramento-811-grand-ave-a3-ca-95838-3466">
+<td data-label="Partner"><div class="primary">Mutual Assistance Network-Black Infant Health</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">811 Grand Ave # A3 CA 95838-3466</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Early Childhood</td>
+<td data-label="More Information"><div class="more"><p>Mutual Assistance Network works to strengthen the existing social and economic infrastructure of Del Paso Heights, Arden Arcade, and the surrounding Northern Sacramento neighborhoods.</p></div></td>
+</tr>
+<tr data-partnerkey="my-sister-s-house-sacramento-3053-freeport-blvd-120-ca-95818-4346" id="partner-my-sister-s-house-sacramento-3053-freeport-blvd-120-ca-95818-4346">
+<td data-label="Partner"><div class="primary">My Sister's House</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">3053 Freeport Blvd #120 CA 95818-4346</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Domestic Violence/Women</td>
+<td data-label="More Information"><div class="more"><p>Domestic Violence</p><p>24-Hour Support Line: (916) 428-3271</p><p>Safe Haven Shelter Program</p><p>Women to Work Program</p><p>Domestic Violence Education</p><p>Healing Through Art</p></div></td>
+</tr>
+<tr data-partnerkey="nami-sacramento-sacramento-1851-heritage-ln-california-95815-4926" id="partner-nami-sacramento-sacramento-1851-heritage-ln-california-95815-4926">
+<td data-label="Partner"><div class="primary">NAMI Sacramento</div></td>
+<td data-label="Contact">Eric Bailey</td>
+<td data-label="Phone"><a class="tel" href="tel:+19168905467">(916) 890-5467</a></td>
+<td data-label="Email"><a class="email" href="mailto:office@namisacramento.org">office@namisacramento.org</a></td>
+<td data-label="Address">1851 Heritage Ln California 95815-4926</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Legal</td>
+<td data-label="More Information"><div class="more"><p>NAMI Sacramento Is The Local Affiliate Of The National Alliance On Mental Illness. We Provide Support Groups And Classes For Both People Living With Mental Illness And The Family Members/Loved Ones Of Those Living With Mental Illness. We Also Provide A Variety Of Presentations To The Sacramento Region To Normalize The Conversation Around Mental Illness. We Also Advocate For Laws To End Prejudice And Discrimination Towards Those Impacted By Mental Illness. We Don't Charge Attendees For Any Of Our Programs.</p></div></td>
+</tr>
+<tr data-partnerkey="partnership-health-plan" id="partner-partnership-health-plan">
+<td data-label="Partner"><div class="primary">Partnership Health Plan</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"><div class="more"><p>If you are working with a Member on Partnership Health Plan, go here to look up resources: <a href="https://www.partnershiphp.org/Members/Medi-Cal/Pages/default.aspx" rel="noopener noreferrer nofollow" target="_blank">https://www.partnershiphp.org/Members/Medi-Cal/Pages/default.aspx</a></p></div></td>
+</tr>
+<tr data-partnerkey="pear-suite-member-medi-cal-cin-check" id="partner-pear-suite-member-medi-cal-cin-check">
+<td data-label="Partner"><div class="primary">Pear Suite Member Medi-Cal CIN Check</div></td>
+<td data-label="Contact">Pear Suite Medi-Cal Coverage Check Team</td>
+<td data-label="Phone"></td>
+<td data-label="Email"><a class="email" href="mailto:cin_check@pearsuite.com">cin_check@pearsuite.com</a></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"><div class="more"><p>Use the email referral template from this resource to request a member's insurance CIN (Client Identification Number) from the Pear Suite team, who will search the provider portal database to determine if the member has active Medi-Cal coverage.</p><p></p><p>Once they receive the referral email, the Pear Suite coverage check team will:</p><ul><li><p>Search the provider portal for the health plan that is indicated for the member, in the referral email.</p></li><li><p>If active coverage is found, add the member's CIN to their profile in Pear Suite.</p></li><li><p>Add a note to the member’s profile, detailing their ECM status.</p></li><li><p>Email your organization to confirm the member's profile has been updated.</p></li></ul></div></td>
+</tr>
+<tr data-partnerkey="pride-industries-i-am-able-helpline-california-roseville-10030-foothills-blvd-california-95747-7102" id="partner-pride-industries-i-am-able-helpline-california-roseville-10030-foothills-blvd-california-95747-7102">
+<td data-label="Partner"><div class="primary">PRIDE Industries I AM ABLE Helpline - California</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+18444262253">(844) 426-2253</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">10030 Foothills Blvd California 95747-7102</td>
+<td data-label="City">Roseville</td>
+<td data-label="Category">Employment Services</td>
+<td data-label="More Information"><div class="more"><p>Our mission is to connect people with disabilities and other barriers to employment to jobs and community resources to assist on their path to employment.</p></div></td>
+</tr>
+<tr data-partnerkey="rebuilding-together-sacramento-sacramento-8231-alpine-ave-3-california-95826-4746" id="partner-rebuilding-together-sacramento-sacramento-8231-alpine-ave-3-california-95826-4746">
+<td data-label="Partner"><div class="primary">Rebuilding Together Sacramento</div></td>
+<td data-label="Contact">Info</td>
+<td data-label="Phone"><a class="tel" href="tel:+91645518801">(916) 455-1880 1</a></td>
+<td data-label="Email"><a class="email" href="mailto:rts@rebuildingtogethersacramento.org">rts@rebuildingtogethersacramento.org</a></td>
+<td data-label="Address">8231 Alpine Ave #3 California 95826-4746</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>Rebuilding Together Sacramento repairs homes, revitalizes communities, and rebuilds lives. Rebuilding Together Sacramento provides a variety of home repairs and accessibility modifications for low to moderate-income homeowners. These repairs and modifications improve the health, safety, accessibility, and efficiency of homes owned by individuals and families who have physical and financial limitations</p></div></td>
+</tr>
+<tr data-partnerkey="request-for-authorization-for-additional-units" id="partner-request-for-authorization-for-additional-units">
+<td data-label="Partner"><div class="primary">Request for Authorization for Additional Units</div></td>
+<td data-label="Contact">Authorization Request</td>
+<td data-label="Phone"></td>
+<td data-label="Email"><a class="email" href="mailto:cin_check@pearsuite.com">cin_check@pearsuite.com</a></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Basic Needs</td>
+<td data-label="More Information"><div class="more"><p>Please Fill Out Form to Request More Units</p><p><a href="https://commongood4u.jotform.com/243515019133044" rel="noopener noreferrer nofollow">Request for Authorization for Additional Units</a></p></div></td>
+</tr>
+<tr data-partnerkey="resources-for-independent-living-sacramento-420-i-st-level-b-suite-3-ca-95814-2319" id="partner-resources-for-independent-living-sacramento-420-i-st-level-b-suite-3-ca-95814-2319">
+<td data-label="Partner"><div class="primary">Resources for Independent Living</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">420 I St Level B; Suite 3 CA 95814-2319</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Basic Needs</td>
+<td data-label="More Information"><div class="more"><p>Disabilities Resources</p></div></td>
+</tr>
+<tr data-partnerkey="restorative-justice-partnership-woodland-301-2nd-st-california-95695-3415" id="partner-restorative-justice-partnership-woodland-301-2nd-st-california-95695-3415">
+<td data-label="Partner"><div class="primary">Restorative Justice Partnership</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+15304064516">(530) 406-4516</a></td>
+<td data-label="Email"><a class="email" href="mailto:rjpreferrals@yolocounty.org">rjpreferrals@yolocounty.org</a></td>
+<td data-label="Address">301 2nd St California 95695-3415</td>
+<td data-label="City">Woodland</td>
+<td data-label="Category">Reentry Job Training</td>
+<td data-label="More Information"><div class="more"><p>Restorative Justice Partnership (RJP) is a volunteer driven diversion program that uses the principles of restorative justice and empowers local citizens to resolve adult criminal cases outside the traditional court room. Participants meet in a relaxed setting to discuss their conduct with a panel of local community volunteers in what is called a conference. The conference is designed to hold participants accountable by helping them recognize the harms caused by their conduct. Then the panelists, participant, and victim (when present), can come up with a collaborative solution designed to address those harms in a way that is restorative rather than punitive. Agreements focus on educational courses, referral to relevant local social services and community-based organizations, and reintegration into the community. RJP volunteers help victims, participants, and their communities to move forward in a positive direction. This aligns with the Yolo DA's mission to pursue truth and justice for victims and our communities with commitment, compassion, courage, and integrity.</p></div></td>
+</tr>
+<tr data-partnerkey="river-city-medical-group-sacramento-7311-greenhaven-dr-ste-145-california-95831-3595" id="partner-river-city-medical-group-sacramento-7311-greenhaven-dr-ste-145-california-95831-3595">
+<td data-label="Partner"><div class="primary">River City Medical Group</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19162284300">(916) 228-4300</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">7311 Greenhaven Dr Ste 145 California 95831-3595</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>River City Medical Group (RCMG) is a progressive Independent Physician Association (IPA) uniquely dedicated to serving both the Medi-Cal and Medicare populations. It is our mission to recognize and meet the needs of our diverse cultural and socio-economic communities while treating our members with compassion and respect. We strive to provide quality health care, using our resources responsibly to benefit our patients. RCMG serves as the bridge between Health Plans, Patients and Care Providers.</p></div></td>
+</tr>
+<tr data-partnerkey="sac-children-s-home-crisis-nursery-sacramento-4533-pasadena-ave-ca-95821-2237" id="partner-sac-children-s-home-crisis-nursery-sacramento-4533-pasadena-ave-ca-95821-2237">
+<td data-label="Partner"><div class="primary">Sac Children's Home - Crisis Nursery</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">4533 Pasadena Ave CA 95821-2237</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Child Care Services</td>
+<td data-label="More Information"><div class="more"><p>parents can bring their children ages 0-5 to one of two Sacramento nurseries for emergency childcare services or overnight care during difficult times</p><p></p><h2 style="text-align: start"><strong>North Crisis Nursery</strong></h2><p style="text-align: start">4533 Pasadena Avenue</p><p style="text-align: start">Sacramento, CA 95821</p><p><a href="tel:916.679.3600" rel="noopener noreferrer nofollow" target="_blank">(916) 679-3600</a></p><h2 style="text-align: start"><strong>South Crisis Nursery</strong></h2><p style="text-align: start">6699 South Land Park Drive</p><p style="text-align: start">Sacramento, CA 95831</p><p><a href="tel:916.394.2000" rel="noopener noreferrer nofollow" target="_blank">(916) 394-2000</a></p></div></td>
+</tr>
+<tr data-partnerkey="sacramento-autistic-spectrum-and-special-needs-alliance" id="partner-sacramento-autistic-spectrum-and-special-needs-alliance">
+<td data-label="Partner"><div class="primary">Sacramento Autistic Spectrum and Special Needs Alliance</div></td>
+<td data-label="Contact">David Gaines</td>
+<td data-label="Phone"><a class="tel" href="tel:+19168775220">(916) 877-5220</a></td>
+<td data-label="Email"><a class="email" href="mailto:dgaines@sassna.org">dgaines@sassna.org</a></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Autism Support</td>
+<td data-label="More Information"><div class="more"><p><a href="https://www.sassna.org/contact" rel="noopener noreferrer nofollow" target="_blank">https://www.sassna.org/contact</a></p></div></td>
+</tr>
+<tr data-partnerkey="sacramento-city-unified-school-district-connect-center-sacramento-5601-47th-ave-california-95824-4031" id="partner-sacramento-city-unified-school-district-connect-center-sacramento-5601-47th-ave-california-95824-4031">
+<td data-label="Partner"><div class="primary">Sacramento City Unified School District - Connect Center</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19166432354">(916) 643-2354</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">5601 47th Ave California 95824-4031</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>The SCUSD Connect Center is a centralized Student Support Center that serves as a “gateway” to critical support services for students and families in our school district. It offers an innovative solution to addressing the health, wellness and educational needs of SCUSD’s children, youth and families. This central hub is designed to increase coordination of services by providing a single, easily identifiable point of access and assistance to address the social, emotional, and health needs of all students.</p></div></td>
+</tr>
+<tr data-partnerkey="sacramento-county-department-of-health-services-sacramento-7001-a-east-pkwy-suite-100-ca-95823-2501" id="partner-sacramento-county-department-of-health-services-sacramento-7001-a-east-pkwy-suite-100-ca-95823-2501">
+<td data-label="Partner"><div class="primary">Sacramento County Department of Health Services</div></td>
+<td data-label="Contact">Mental Health Crisis Calls</td>
+<td data-label="Phone"><a class="tel" href="tel:+19168751055">(916) 875-1055</a></td>
+<td data-label="Email"></td>
+<td data-label="Address">7001-A East Pkwy Suite 100 CA 95823-2501</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Behavioral Health</td>
+<td data-label="More Information"><div class="more"><p>We provide a full array of culturally competent and linguistically proficient mental health services to individuals of​ all ages.  Services include prevention and early intervention, outpatient services, case management services, crisis intervention and stabilization services, and inpatient psychiatric hospitalizations. </p></div></td>
+</tr>
+<tr data-partnerkey="sacramento-county-office-of-education-scoe-rancho-cordova-10474-mather-blvd-california-95655-4116" id="partner-sacramento-county-office-of-education-scoe-rancho-cordova-10474-mather-blvd-california-95655-4116">
+<td data-label="Partner"><div class="primary">Sacramento County Office of Education (SCOE)</div></td>
+<td data-label="Contact">Espi Espioza</td>
+<td data-label="Phone"><a class="tel" href="tel:+19162282506">(916) 228-2506</a></td>
+<td data-label="Email"><a class="email" href="mailto:earlylearning@scoe.net">earlylearning@scoe.net</a></td>
+<td data-label="Address">10474 Mather Blvd California 95655-4116</td>
+<td data-label="City">Rancho Cordova</td>
+<td data-label="Category">Employment Services</td>
+<td data-label="More Information"><div class="more"><p>The Sacramento County Office Of Education (SCOE) Early Learning Department Promotes A Strong Early Learning Community To Support Children, Families, And Providers By Providing A Variety Of Services And Supports, Such As Early Head Start, For Families With Children 0-3, Connecting Families With Early Learning And Developmental Resources In The County; Supporting Early Learning And Care Providers With Enhancing And Maintaining Quality In Their Programs Through Coaching And Professional Learning; And Through Programs Such As Raising Quality Together, The Local Planning Council, CPIN And The Sacramento County Workforce Pathways Grant Which Provides Stipends To Eligible Early Learning Providers Who Complete Coursework Or Professional Learning Hours.</p></div></td>
+</tr>
+<tr data-partnerkey="sacramento-county-office-of-education-early-learning" id="partner-sacramento-county-office-of-education-early-learning">
+<td data-label="Partner"><div class="primary">Sacramento County Office Of Education - Early Learning</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Early Childhood</td>
+<td data-label="More Information"></td>
+</tr>
+<tr data-partnerkey="sacramento-food-bank-family-services-sacramento-1951-bell-ave-california-95838-3039" id="partner-sacramento-food-bank-family-services-sacramento-1951-bell-ave-california-95838-3039">
+<td data-label="Partner"><div class="primary">Sacramento Food Bank &amp; Family Services</div></td>
+<td data-label="Contact">Lorena Carranza</td>
+<td data-label="Phone"><a class="tel" href="tel:+19164561980">(916) 456-1980</a></td>
+<td data-label="Email"><a class="email" href="mailto:lcarranza@sacramentofoodbank.org">lcarranza@sacramentofoodbank.org</a></td>
+<td data-label="Address">1951 Bell Ave California 95838-3039</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Food Assistance</td>
+<td data-label="More Information"></td>
+</tr>
+<tr data-partnerkey="sacramento-meals-on-wheels" id="partner-sacramento-meals-on-wheels">
+<td data-label="Partner"><div class="primary">Sacramento Meals on Wheels</div></td>
+<td data-label="Contact">Office</td>
+<td data-label="Phone"><a class="tel" href="tel:+19164449533">(916) 444-9533</a></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Home Delivered Meals</td>
+<td data-label="More Information"><div class="more"><p><strong>If individuals meet the eligibility criteria and would like to apply for the home-delivered meals program, the first step is to call our office at (916) 444-9533. Following the initial intake process, a caseworker will make a home visit to complete an assessment, explain the program, and determine eligibility. Every three months, individuals receiving home-delivered meals are reassessed for continued eligibility either by phone or a home visit.</strong></p><p><strong>Along with home-delivered meals, eligible participants receive additional services from the program such as:</strong></p><p><strong>Pet food deliveries for homebound participants’ dogs and cats through our AniMeals program (as available).</strong></p><p><strong>Friendly visits and status checks during meal delivery.</strong></p><p><strong>Monthly deliveries of Meals on Wheels newsletters and menus.</strong></p><p><strong>Connections or referrals to community resources or services.</strong></p></div></td>
+</tr>
+<tr data-partnerkey="sacramento-native-american-health-center-sacramento-2020-j-st-california-95811-3120" id="partner-sacramento-native-american-health-center-sacramento-2020-j-st-california-95811-3120">
+<td data-label="Partner"><div class="primary">Sacramento Native American Health Center</div></td>
+<td data-label="Contact">admin</td>
+<td data-label="Phone"><a class="tel" href="tel:+19163410575">(916) 341-0575</a></td>
+<td data-label="Email"><a class="email" href="mailto:info@snahc.org">info@snahc.org</a></td>
+<td data-label="Address">2020 J St California 95811-3120</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>The Sacramento Native American Health Center Inc. (SNAHC) Is A Non-Profit 501 (C)(3) (Federal Tax ID # 20-4287737) Federally Qualified Health Center, Located In Midtown Sacramento. The Health Center Is Committed To Enhancing Quality Of Life By Providing A Culturally Competent, Holistic, And Patient-Centered Continuum Of Care. There Are No Tribal Or Ethnic Requirements To Receive Care Here.</p></div></td>
+</tr>
+<tr data-partnerkey="single-mom-strong-citrus-heights-7525-auburn-blvd-5-california-95610-2239" id="partner-single-mom-strong-citrus-heights-7525-auburn-blvd-5-california-95610-2239">
+<td data-label="Partner"><div class="primary">Single Mom Strong</div></td>
+<td data-label="Contact">Representative</td>
+<td data-label="Phone"><a class="tel" href="tel:+19166871282">(916) 687-1282</a></td>
+<td data-label="Email"><a class="email" href="mailto:ttaylor@singlemomstrong.org">ttaylor@singlemomstrong.org</a></td>
+<td data-label="Address">7525 Auburn Blvd #5 California 95610-2239</td>
+<td data-label="City">Citrus Heights</td>
+<td data-label="Category">Employment Services</td>
+<td data-label="More Information"><div class="more"><p>Single Mom Strong is a local nonprofit organization with a mission to empower single mothers and their children through enrichment, encouragement and educational programs. 35% of children in Sacramento County are being raised by single moms. Despite mothers’ best efforts, statistics show that these children suffer in a variety of ways from educational deficiencies to having lower occupational status and income as adults, among other issues. Meanwhile, the single mothers are plagued by feelings of guilt and inadequacy and often these families are living in poverty. At the core of SMS programs and services is community. We are a community of single mothers and children, providing weekly opportunities for community members to connect in a variety of ways. Being a single parent is difficult and lonely, but having others in similar situations to share questions and concerns and celebrate wins with is powerful. Additionally, our workshop and coaching programs are based on the premise that a single mother can be a professional “success” and a great parent, and the belief that neither the single mother nor her children are limited by this circumstance. Our single mothers are given the tools and encouragement needed to achieve their goals, while they and their children benefit from being a part of the SMS community. It takes a village to raise a child and for single mothers, Single Mom Strong is that village. Finally, our preschool and childcare programs were created to address the lack of affordable, quality childcare in the region.Our Preschool and Pre-K programs ensure high early childhood education is accessible to children of single mothers, with tuition starting at just 60% of retail rates. Our school School-Age program is open on all days elementary schools are closed to provide a safe, nurturing environment and an inexpensive solution for working single parents. With their children receiving quality care, mothers can focus on achieving education or career goals.</p></div></td>
+</tr>
+<tr data-partnerkey="st-vincent-de-paul-sacramento-diocesan-council-sacramento-california-95816" id="partner-st-vincent-de-paul-sacramento-diocesan-council-sacramento-california-95816">
+<td data-label="Partner"><div class="primary">St. Vincent De Paul Sacramento Diocesan Council</div></td>
+<td data-label="Contact">Info</td>
+<td data-label="Phone"><a class="tel" href="tel:+19165727553">(916) 572-7553</a></td>
+<td data-label="Email"><a class="email" href="mailto:svdpsachelp@gmail.com">svdpsachelp@gmail.com</a></td>
+<td data-label="Address">California 95816</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Housing</td>
+<td data-label="More Information"><div class="more"><p><strong>Helping Those In Need</strong></p><p>​The Society of St. Vincent de Paul is a nonprofit organization that provides direct assistance to a community's most vulnerable residents—those who live in poverty and those who are struggling to make ends meet. Our goal is to help them meet basic needs, build self-sufficiency, and ultimately break the cycle of poverty. Instead of only helping those who come to us, we provide one-on-one service through our home visits, being invited into people's homes to learn the extent of their needs before determining how to help.</p><p>​</p><p>Following the tradition of Frederic Ozanam, founder of the International Society of St. Vincent de Paul, we serve anyone in need, within our means.</p><p> Subject to available resources, the aid we provide most often includes:</p><ul><li><p>food</p></li><li><p>financial assistance for rent and utilities, and emergency housing</p></li><li><p>clothing </p></li><li><p>beds &amp; furniture </p></li><li><p>consultation, referral and intervention services <br/> </p></li></ul><p>916-572-7553 <a href="916-572-7553 https://www.svdp-sacramento.org/helpline" rel="noopener noreferrer nofollow" target="_blank">https://www.svdp-sacramento.org/helpline</a></p></div></td>
+</tr>
+<tr data-partnerkey="stay-out-solutions-citrus-heights-po-box-4049-california-95611-4049" id="partner-stay-out-solutions-citrus-heights-po-box-4049-california-95611-4049">
+<td data-label="Partner"><div class="primary">Stay Out Solutions</div></td>
+<td data-label="Contact">Angel Clark</td>
+<td data-label="Phone"><a class="tel" href="tel:+19166993939">(916) 699-3939</a></td>
+<td data-label="Email"><a class="email" href="mailto:angel@stayoutsolutions.com">angel@stayoutsolutions.com</a></td>
+<td data-label="Address">PO Box 4049 California 95611-4049</td>
+<td data-label="City">Citrus Heights</td>
+<td data-label="Category">Reentry Job Training</td>
+<td data-label="More Information"><div class="more"><p>Life Changing Employment Services. We are a staffing agency that provides full employment readiness and placement for justice involved and veterans. Our organization offers individualized stability support services. We believe that employment is just the beginning. Through our unique services, we envision a world where the forgotten experience true success changing the perspective of the community and building a more tolerant and inclusive world.</p><p><a href="https://www.stayoutsolutions.com/service-page/coordinated-care-services?referral=service_list_widget" rel="noopener noreferrer nofollow">BOOK APPOINTMENT</a></p><p></p></div></td>
+</tr>
+<tr data-partnerkey="the-good-news-sacramento-6300-ehrhardt-ave-ca-95823-5637" id="partner-the-good-news-sacramento-6300-ehrhardt-ave-ca-95823-5637">
+<td data-label="Partner"><div class="primary">The Good News!</div></td>
+<td data-label="Contact">Jason Honig</td>
+<td data-label="Phone"><a class="tel" href="tel:+15302768474">(530) 276-8474</a></td>
+<td data-label="Email"><a class="email" href="mailto:jason@commongood4u.org">jason@commongood4u.org</a></td>
+<td data-label="Address">6300 Ehrhardt Ave CA 95823-5637</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>Hi {{ First Name }} ,</p><p>We at Common Good Coordinated Care, would like to invite you to subscribe to our newsletter, which highlights important health topics, community events, and resources!</p><p>Please take a look: <a href="https://mailchi.mp/commongood4u.org/the-good-news" rel="noopener noreferrer nofollow" target="_blank">https://mailchi.mp/commongood4u.org/the-good-news</a></p><p>In this first edition, we highlight the Free Health Fair, open to the community, THIS Saturday, July 20, 2024 from 10:00am-2:00pm, at Valley High Health TECH, 6300 Ehrhardt Drive, Sacramento, CA. 95823.</p><p>We hope you are well, and staying cool! If you need any assistance, please reach out. Call or text: 530-276-8474; or email: <a href="mailto:info@commongood4u.org" rel="noopener noreferrer nofollow" target="_blank">info@commongood4u.org</a>.</p><p></p><p>Together in Community, <br/>Common Good Coordinated Care Team</p></div></td>
+</tr>
+<tr data-partnerkey="the-sacramento-employment-and-training-agency-seta-sacramento-925-del-paso-blvd-california-95815-3512" id="partner-the-sacramento-employment-and-training-agency-seta-sacramento-925-del-paso-blvd-california-95815-3512">
+<td data-label="Partner"><div class="primary">The Sacramento Employment and Training Agency (SETA)</div></td>
+<td data-label="Contact">Terri Carpenter</td>
+<td data-label="Phone"><a class="tel" href="tel:+19162633800">(916) 263-3800</a></td>
+<td data-label="Email"><a class="email" href="mailto:terri.carpenter@seta.net">terri.carpenter@seta.net</a></td>
+<td data-label="Address">925 Del Paso Blvd California 95815-3512</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Employment Services</td>
+<td data-label="More Information"><div class="more"><p>The SETA Is A Joint Powers Agency Of The City And County Of Sacramento And Was Formed In 1978. From Its Inception The SETA Has Been An Effective Force In Connecting People To Jobs, Business Owners To Quality Employees, Education And Nutrition To Children, Assistance To Refugees, And Hope For Many Sacramento Area Residents. The SETA Is The Designated Community Action Agency For Sacramento County For The Provision Of Community Services Block Grant (CSBG) Services.The Purpose Of The CSBG Program Is To Reduce The Incidence And Effects Of Poverty And Empower Low-Income Families And Individuals To Become Self-Sufficient.The Sacramento County Head Start Program Is Administered By The SETA. Head Start Serves Over 6,200 Children Daily. Since 1983, The SETA Refugee Program Has Served Refugees Predominately From Southeast Asia, The Former Soviet Union, And Most Recently The Middle East. The SETA Operates The Sacramento Works Job Center System Providing Resources And Services To Employers And Job Seekers In Sacramento County. Mission: Preparing People For Success In School, In Work, In Life.</p></div></td>
+</tr>
+<tr data-partnerkey="utility-assistance-the-home-energy-assistance-program-heap" id="partner-utility-assistance-the-home-energy-assistance-program-heap">
+<td data-label="Partner"><div class="primary">Utility Assistance-The Home Energy Assistance Program (HEAP)</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address"></td>
+<td data-label="City"></td>
+<td data-label="Category">Care Coordination (Internal)</td>
+<td data-label="More Information"><div class="more"><p><a href="https://www.communityresourceproject.org/Services/Utility-Assistance" rel="noopener noreferrer nofollow">HEAP LINK </a></p><p>HEAP is available to customers of PG&amp;E, SMUD, and those who heat their homes using wood, propane, or oil purchased from a vendor. Along with the credit, clients will receive valuable information about energy conservation and practical tips on how to save energy and keep their utility bills at a manageable level.</p><h4 style="text-align: start">Priority for HEAP services is given to applicants that meet the following criteria</h4><ul><li><p>Are income qualified</p></li><li><p>Have a high energy burden (the percentage of the household income that is spent on the energy bill(s))</p></li><li><p>Have a member of the household that is part of a vulnerable population (i.e. seniors over 60 years of age, disabled persons, and children under 5 years of age)</p></li></ul><p style="text-align: start">HEAP assistance is calculated based on household size, household income, and the percentage of income spent on energy bills, known as the energy burden.</p><p style="text-align: start">Other factors considered include funding availability and the cost of energy within the county where the household resides. HEAP provides one payment, typically ranging from $300-$600 every 12 months.</p><p style="text-align: start">Processing of your credit can take 8-12 weeks from the time you apply, which varies based on applicant volume. If you receive a HEAP credit, you are still responsible for paying your utility bill while the credit is being processed.</p></div></td>
+</tr>
+<tr data-partnerkey="volunteers-of-america-veteran-services-mather-10618-schirra-ave-california-95655" id="partner-volunteers-of-america-veteran-services-mather-10618-schirra-ave-california-95655">
+<td data-label="Partner"><div class="primary">Volunteers of America Veteran Services</div></td>
+<td data-label="Contact">Employment Services</td>
+<td data-label="Phone"><a class="tel" href="tel:+19166615149">(916) 661-5149</a></td>
+<td data-label="Email"><a class="email" href="mailto:info@voa-ncnn.org">info@voa-ncnn.org</a></td>
+<td data-label="Address">10618 Schirra Ave California 95655</td>
+<td data-label="City">Mather</td>
+<td data-label="Category">Employment Services</td>
+<td data-label="More Information"><div class="more"><p>To change individual lives, instill hope, increase self-worth and facilitate independence, through quality housing, employment, and related supportive services.</p></div></td>
+</tr>
+<tr data-partnerkey="weave-sacramento-1900-k-st-california-95811-4187" id="partner-weave-sacramento-1900-k-st-california-95811-4187">
+<td data-label="Partner"><div class="primary">WEAVE</div></td>
+<td data-label="Contact">Allison Escott</td>
+<td data-label="Phone"><a class="tel" href="tel:+19164482321">(916) 448-2321</a></td>
+<td data-label="Email"><a class="email" href="mailto:info@weaveinc.org">info@weaveinc.org</a></td>
+<td data-label="Address">1900 K St California 95811-4187</td>
+<td data-label="City">Sacramento</td>
+<td data-label="Category">Domestic Violence/Women</td>
+<td data-label="More Information"><div class="more"><p>WEAVE™ Is A 501(C)(3) Nonprofit Organization Incorporated In 1978 To Provide Domestic Violence Services. In 1988, The Agency Became Sacramento County’s Sole Rape Crisis Center And Added Services For Victims Of Sex Trafficking In 2009. WEAVE Provides 24/7 Services To Victims Of Sexual Assault, Domestic Violence, And Sex Trafficking. Our Services Include Confidential Emergency Shelter And Transitional Housing; 24/7 Support &amp; Information Line; Online Chat; 24/7 Sexual Assault Response Team; Anti-Trafficking Response Team; Safety Planning, Advocacy, And Case Management; Therapeutic Counseling; Comprehensive Legal Services; Emergency Food, Clothing, And Transportation; And School And Community-Based Prevention Education Programs.</p></div></td>
+</tr>
+<tr data-partnerkey="yolo-department-of-health-human-services-davis-600-a-st-ca-95616-3649" id="partner-yolo-department-of-health-human-services-davis-600-a-st-ca-95616-3649">
+<td data-label="Partner"><div class="primary">Yolo Department of Health &amp; Human Services</div></td>
+<td data-label="Contact"></td>
+<td data-label="Phone"></td>
+<td data-label="Email"></td>
+<td data-label="Address">600 A St CA 95616-3649</td>
+<td data-label="City">Davis</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>Yolo County Health &amp; Human Services: <br/>1-833-744-4472 (general number)</p></div></td>
+</tr>
+<tr data-partnerkey="yolo-hospice-davis-1909-galileo-ct-california-95618-4890" id="partner-yolo-hospice-davis-1909-galileo-ct-california-95618-4890">
+<td data-label="Partner"><div class="primary">Yolo Hospice</div></td>
+<td data-label="Contact">Gloria Camacho</td>
+<td data-label="Phone"><a class="tel" href="tel:+15307585566">(530) 758-5566</a></td>
+<td data-label="Email"><a class="email" href="mailto:gcamacho@yolocares.org">gcamacho@yolocares.org</a></td>
+<td data-label="Address">1909 Galileo Ct California 95618-4890</td>
+<td data-label="City">Davis</td>
+<td data-label="Category">Medical</td>
+<td data-label="More Information"><div class="more"><p>As The First Non-Profit Hospice In The Sacramento Valley, We Have The Longest Regional Track Record For Serving Those With A Life-Limiting Illness In The Counties Of Colusa, Sacramento, Solano, Sutter, And Yolo. Our Mission Is To Provide The Highest Level Of Care, To Every Family, Every Time.</p></div></td>
+</tr>
+<tr data-partnerkey="your-home-assistant-elk-grove-2228-longport-ct-ste-130-california-95758-7180" id="partner-your-home-assistant-elk-grove-2228-longport-ct-ste-130-california-95758-7180">
+<td data-label="Partner"><div class="primary">Your Home Assistant</div></td>
+<td data-label="Contact">Cynthia Cuellar</td>
+<td data-label="Phone"><a class="tel" href="tel:+19169709001">(916) 970-9001</a></td>
+<td data-label="Email"><a class="email" href="mailto:ccuellar@yourhomeassistant.com">ccuellar@yourhomeassistant.com</a></td>
+<td data-label="Address">2228 Longport Ct ste 130 California 95758-7180</td>
+<td data-label="City">Elk Grove</td>
+<td data-label="Category">Home-based Care</td>
+<td data-label="More Information"><div class="more"><p>Your Home Assistant is a Licensed Home Care Agency. We utilize our home maker and personal care service to provide a better quality of life for your clients/patients. Our mission is to provide a quality home care solution for all stages of life.</p></div></td>
+</tr>
+</tbody>
+</table>
+<footer>
+      Directory information subject to change. For official referrals, contact Common Good Community.
+    </footer>
+</main>
+<script>
+  const search = document.getElementById('search');
+  const count = document.getElementById('count');
+  const allRows = Array.from(document.querySelectorAll('#partners tbody tr'));
+
+  function updateCount(visible) {
+    count.textContent = visible.toLocaleString() + ' / ' + allRows.length.toLocaleString() + ' shown';
+  }
+
+  function slugify(s) {
+    if (!s) return '';
+    // normalize accents -> ascii, then clean
+    s = s.normalize('NFKD').replace(/[̀-ͯ]/g, '');
+    return s.toLowerCase()
+      .replace(/&/g, ' and ')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  function getPartnerNameFromRow(row) {
+    // Prefer the visible partner name (primary link text)
+    const el = row.querySelector('td[data-label="Partner"] .primary');
+    return el ? (el.textContent || '').trim() : '';
+  }
+
+  function ensureRowIds() {
+    allRows.forEach(r => {
+      const name = getPartnerNameFromRow(r);
+      if (!name) return;
+      const slug = slugify(name);
+      // Stable row id for deep links: #p-<slug>
+      if (!r.id) r.id = 'p-' + slug;
+      r.setAttribute('data-partner-slug', slug);
+    });
+  }
+
+  function applyFilter() {
+    const q = (search.value || '').toLowerCase().trim();
+    let visible = 0;
+    allRows.forEach(r => {
+      const text = (r.innerText || '').toLowerCase();
+      const show = !q || text.includes(q);
+      r.style.display = show ? '' : 'none';
+      if (show) visible += 1;
+    });
+    updateCount(visible);
+  }
+
+  function highlightRow(row) {
+    if (!row) return;
+    // Clear any existing highlights
+    allRows.forEach(r => r.classList.remove('highlight'));
+    row.classList.add('highlight');
+    row.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function applyUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+
+    // Support: ?q=... (prefill the search box and filter)
+    const q = (params.get('q') || '').trim();
+    // Support: ?focus=... (partner name or slug). If q is blank, we'll use focus as q.
+    const focus = (params.get('focus') || '').trim();
+    // Support: ?id=... (slug only)
+    const id = (params.get('id') || '').trim();
+
+    if (q) {
+      search.value = q;
+    } else if (focus) {
+      search.value = focus;
+    }
+    applyFilter();
+
+    // If there's a hash, prefer that (#p-<slug>)
+    if (window.location.hash && window.location.hash.length > 1) {
+      const target = document.getElementById(window.location.hash.substring(1));
+      if (target) {
+        highlightRow(target);
+        return;
+      }
+    }
+
+    // Otherwise try focus/id
+    const focusSlug = id ? id : slugify(focus);
+    if (focusSlug) {
+      const byId = document.getElementById('p-' + focusSlug);
+      if (byId && byId.style.display !== 'none') {
+        highlightRow(byId);
+        return;
+      }
+      // Fallback: scan visible rows for exact partner-name match
+      const focusLower = focus.toLowerCase();
+      const match = allRows.find(r => r.style.display !== 'none' && getPartnerNameFromRow(r).toLowerCase() === focusLower);
+      if (match) highlightRow(match);
+    }
+  }
+
+  // ---------- init ----------
+  ensureRowIds();
+  search.addEventListener('input', () => {
+    applyFilter();
+    // keep URL in sync (nice-to-have; doesn't reload)
+    const q = (search.value || '').trim();
+    const url = new URL(window.location.href);
+    if (q) url.searchParams.set('q', q);
+    else url.searchParams.delete('q');
+    history.replaceState(null, '', url.toString());
+  });
+
+  applyFilter();
+  applyUrlParams();
+</script>
+<script>
+// Added: support deep-link highlight (e.g., ?partnerKey=weave-sacramento OR ?q=searchTerm)
+(function () {
+  function getParam(name) {
+    var params = new URLSearchParams(window.location.search);
+    return params.get(name) || "";
+  }
+
+  var partnerKey = getParam("partnerKey");
+  if (partnerKey) {
+    var row = document.querySelector('tr[data-partnerkey="' + CSS.escape(partnerKey) + '"]');
+    if (row) {
+      row.classList.add("partner-highlight");
+      row.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+
+  var q = getParam("q");
+  if (q) {
+    var input = document.getElementById("searchInput");
+    if (input) {
+      input.value = q;
+      var evt = new Event("input", { bubbles: true });
+      input.dispatchEvent(evt);
+    }
+  }
+})();
+</script></body>
+</html>
