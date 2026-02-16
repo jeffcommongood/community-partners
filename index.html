@@ -199,7 +199,11 @@
 
 
 /* Added: URL-driven highlight */
-.partner-highlight{outline:3px solid #159996; outline-offset:-3px;}
+.partner-highlight {
+  outline: 3px solid #159996;
+  background: #e9f7f6;
+}
+
 </style>
 </head>
 <body>
@@ -1059,5 +1063,44 @@
     }
   }
 })();
-</script></body>
+</script><script>
+/**
+ * Deep-link highlight by PartnerSpId
+ * Example:
+ *   https://commongood4u.github.io/community-partners/?partnerSpId=47
+ *
+ * Optional:
+ *   Add &focus=1 to hide all other rows:
+ *   https://commongood4u.github.io/community-partners/?partnerSpId=47&focus=1
+ */
+(function () {
+  function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name) || "";
+  }
+
+  var partnerSpId = getParam("partnerSpId");
+  if (!partnerSpId) return;
+
+  // Find the matching row
+  var row = document.querySelector('tr[data-id="' + partnerSpId + '"]');
+  if (!row) return;
+
+  // Highlight + scroll
+  row.classList.add("partner-highlight");
+  row.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // Optional: focus mode (hide everything else)
+  var focus = getParam("focus");
+  if (focus === "1") {
+    var rows = document.querySelectorAll("tbody tr");
+    rows.forEach(function (tr) {
+      if (tr !== row) tr.style.display = "none";
+    });
+
+    // Optional: hide header row spacing weirdness if any
+    // (Leave as-is unless you see a layout glitch.)
+  }
+})();
+</script>
+</body>
 </html>
